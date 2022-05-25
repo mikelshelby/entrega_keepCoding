@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from entries.api.views import EntriesListApi, ModifyEntriesListApi, DeleteEntriesListApi
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/entries', EntriesListApi.as_view(), name = "entry_list_api"),
+    path('api/v1/modify/<int:pk>/', ModifyEntriesListApi.as_view(), name = "modify_list_api"),
+    path('api/v1/delete/<int:pk>/', DeleteEntriesListApi.as_view(), name = "delete_list_api"),
 ]
